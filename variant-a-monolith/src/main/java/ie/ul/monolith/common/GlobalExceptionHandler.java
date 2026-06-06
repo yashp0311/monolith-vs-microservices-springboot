@@ -1,5 +1,7 @@
 package ie.ul.monolith.common;
 
+import ie.ul.monolith.order.InsufficientStockException;
+import ie.ul.monolith.order.OrderNotFoundException;
 import ie.ul.monolith.product.ProductNotFoundException;
 import ie.ul.monolith.user.EmailAlreadyExistsException;
 import ie.ul.monolith.user.UserNotFoundException;
@@ -14,17 +16,15 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler({UserNotFoundException.class, ProductNotFoundException.class})
+    @ExceptionHandler({UserNotFoundException.class, ProductNotFoundException.class, OrderNotFoundException.class})
     public ResponseEntity<ErrorResponse> handleNotFound(RuntimeException ex) {
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ErrorResponse.of(404, "Not Found", ex.getMessage()));
     }
 
-    @ExceptionHandler(EmailAlreadyExistsException.class)
+    @ExceptionHandler({EmailAlreadyExistsException.class, InsufficientStockException.class})
     public ResponseEntity<ErrorResponse> handleConflict(RuntimeException ex) {
-        return ResponseEntity
-                .status(HttpStatus.CONFLICT)
+        return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(ErrorResponse.of(409, "Conflict", ex.getMessage()));
     }
 
