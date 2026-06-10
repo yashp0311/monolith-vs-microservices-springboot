@@ -1,0 +1,41 @@
+services:
+  postgres-user:
+    image: postgres:16-alpine
+    container_name: variant-b-postgres-user
+    environment:
+      POSTGRES_DB: user_service
+      POSTGRES_USER: user_service
+      POSTGRES_PASSWORD: user_service
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-user-data:/var/lib/postgresql/data
+
+  postgres-product:
+    image: postgres:16-alpine
+    container_name: variant-b-postgres-product
+    environment:
+      POSTGRES_DB: product_service
+      POSTGRES_USER: product_service
+      POSTGRES_PASSWORD: product_service
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-product-data:/var/lib/postgresql/data
+
+  postgres-order:
+    image: postgres:16-alpine
+    container_name: variant-b-postgres-order
+    environment:
+      POSTGRES_DB: order_service
+      POSTGRES_USER: order_service
+      POSTGRES_PASSWORD: order_service
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres-order-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-user-data:
+  postgres-product-data:
+  postgres-order-data:

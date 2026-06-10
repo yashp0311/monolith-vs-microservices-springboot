@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/variant-a-monolith/pom.xml" />
+        <option value="$PROJECT_DIR$/variant-b-microservices/user-service/pom.xml" />
       </list>
     </option>
   </component>
