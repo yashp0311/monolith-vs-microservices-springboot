@@ -24,4 +24,10 @@ public class ProductService {
         return productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
     }
+
+    public Product updateStock(UUID id, Integer newStock) {
+        Product product = getProduct(id);
+        product.setStock(newStock);
+        return productRepository.save(product);
+    }
 }

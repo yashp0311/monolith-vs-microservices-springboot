@@ -27,4 +27,12 @@ public class ProductController {
         Product product = productService.getProduct(id);
         return ProductResponse.from(product);
     }
+
+    @PatchMapping("/{id}/stock")
+    public ProductResponse updateStock(@PathVariable UUID id,
+                                       @RequestBody UpdateStockRequest request) {
+        Product updated = productService.updateStock(id, request.stock());
+        return ProductResponse.from(updated);
+    }
+
 }
