@@ -13,20 +13,20 @@ Controlled performance comparison of monolithic and microservice architectures i
 
 ## Repository structure
 
-variant-a-monolith/        # Variant A: monolithic Spring Boot app
-variant-b-microservices/   # Variant B: REST-based microservices
-user-service/
-product-service/
-order-service/
-load-tests/                # Apache JMeter test plans
-docker/                    # Docker Compose files for each variant
-results/                   # Raw experimental data (read-only after collection)
-analysis/                  # Python notebooks and scripts for analysis
-docs/                      # Design documents, contracts, dissertation drafts
+- variant-a-monolith/        # Variant A: monolithic Spring Boot app
+- variant-b-microservices/   # Variant B: REST-based microservices
+- user-service/
+- product-service/
+- order-service/
+- load-tests/                # Apache JMeter test plans
+- docker/                    # Docker Compose files for each variant
+- results/                   # Raw experimental data (read-only after collection)
+- analysis/                  # Python notebooks and scripts for analysis
+- docs/                      # Design documents, contracts, dissertation drafts
 
 ## Status
 
-Currently in design phase. Build of Variant A starts next.
+Currently in design phase. Build of Variant C starts next.
 
 ## License
 
