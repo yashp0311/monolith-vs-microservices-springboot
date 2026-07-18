@@ -1,0 +1,13 @@
+Run ID: 20260717-135752
+Started: 2026-07-17T12:57:53Z
+Variant: A (monolith)
+Concurrency levels: 10 50 100 200 500
+Repetitions: 3
+Duration per run: 600s
+Ramp-up: 30s
+Cooldown between runs: 30s
+JMeter version: 
+Java version: openjdk version "21.0.11" 2026-04-21 LTS
+Mac: macOS 26.4.1
+Hardware: Apple M2
+RAM: 8 GB
