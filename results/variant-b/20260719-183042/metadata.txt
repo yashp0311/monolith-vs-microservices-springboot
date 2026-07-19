@@ -1,0 +1,14 @@
+Run ID: 20260719-183042
+Started: 2026-07-19T17:30:43Z
+Variant: B (REST microservices)
+Services: user-service (8081), product-service (8082), order-service (8083)
+Concurrency levels: 10 50 100 200 500
+Repetitions: 3
+Duration per run: 600s
+Ramp-up: 30s
+Cooldown between runs: 30s
+JMeter version: 
+Java version: openjdk version "21.0.11" 2026-04-21 LTS
+Mac: macOS 26.4.1
+Hardware: Apple M2
+RAM: 8 GB

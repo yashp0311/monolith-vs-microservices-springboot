@@ -1,0 +1,20 @@
+global:
+  scrape_interval: 1s
+  evaluation_interval: 1s
+
+scrape_configs:
+  - job_name: 'variant-b'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:8081']
+        labels:
+          variant: 'B'
+          service: 'user-service'
+      - targets: ['host.docker.internal:8082']
+        labels:
+          variant: 'B'
+          service: 'product-service'
+      - targets: ['host.docker.internal:8083']
+        labels:
+          variant: 'B'
+          service: 'order-service'
