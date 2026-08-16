@@ -6,7 +6,7 @@ set -euo pipefail
 # ============================================================
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-RESULTS_BASE="$REPO_ROOT/results/variant-b"
+RESULTS_BASE="$REPO_ROOT/results/variant-b-tuned-pool30"
 USER_SEED="$REPO_ROOT/load-tests/seed-data/variant-b-user-seed.sql"
 PRODUCT_SEED="$REPO_ROOT/load-tests/seed-data/variant-b-product-seed.sql"
 ORDER_SEED="$REPO_ROOT/load-tests/seed-data/variant-b-order-seed.sql"
@@ -52,14 +52,14 @@ fi
 cat > "$RUN_DIR/metadata.txt" <<EOF
 Run ID: $RUN_ID
 Started: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
-Variant: B (REST microservices)
+Variant: B (REST microservices) - TUNED with HikariCP pool=30 per service (default was 10)
 Services: user-service (8081), product-service (8082), order-service (8083)
 Concurrency levels: ${CONCURRENCY_LEVELS[*]}
 Repetitions: $REPETITIONS
 Duration per run: ${DURATION}s
 Ramp-up: ${RAMPUP}s
 Cooldown between runs: ${COOLDOWN}s
-JMeter version: $(jmeter --version 2>&1 | grep -i "apache jmeter" | head -1)
+JMeter version: $(jmeter --version 2>&1 | grep -i "apache jmeter" | head -1)f
 Java version: $(java -version 2>&1 | head -1)
 Mac: $(sw_vers -productName) $(sw_vers -productVersion)
 Hardware: $(sysctl -n machdep.cpu.brand_string)
@@ -76,10 +76,10 @@ for THREADS in "${CONCURRENCY_LEVELS[@]}"; do
         LOG_FILE="$RUN_DIR/${RUN_NAME}.log"
 
         echo ""
-        echo "-------------------------------------------"
+
         echo "[$(date +%H:%M:%S)] Starting run: $RUN_NAME"
         echo "  Threads: $THREADS, Repetition: $REP/$REPETITIONS"
-        echo "-------------------------------------------"
+
 
         # Seed all three databases
         echo "  Seeding databases..."

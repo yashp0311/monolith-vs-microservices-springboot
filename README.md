@@ -24,10 +24,6 @@ Controlled performance comparison of monolithic and microservice architectures i
 - analysis/                  # Python notebooks and scripts for analysis
 - docs/                      # Design documents, contracts, dissertation drafts
 
-## Status
-
-Currently in design phase. Build of Variant C starts next.
-
 ## License
 
 MIT

@@ -10,7 +10,7 @@ set -euo pipefail
 # ============================================================
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-RESULTS_BASE="$REPO_ROOT/results/variant-a"
+RESULTS_BASE="$REPO_ROOT/results/variant-a-tuned-pool30"
 SEED_FILE="$REPO_ROOT/load-tests/seed-data/variant-a-seed.sql"
 JMX_FILE="$REPO_ROOT/load-tests/variant-a-experiment.jmx"
 
@@ -48,7 +48,7 @@ fi
 cat > "$RUN_DIR/metadata.txt" <<EOF
 Run ID: $RUN_ID
 Started: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
-Variant: A (monolith)
+Variant: A (monolith) - TUNED with HikariCP pool=30 (default was 10)
 Concurrency levels: ${CONCURRENCY_LEVELS[*]}
 Repetitions: $REPETITIONS
 Duration per run: ${DURATION}s
@@ -62,7 +62,6 @@ RAM: $(sysctl -n hw.memsize | awk '{print $1/1024/1024/1024 " GB"}')
 EOF
 
 cat "$RUN_DIR/metadata.txt"
-echo "==========================================="
 
 # Run the experiments
 for THREADS in "${CONCURRENCY_LEVELS[@]}"; do
@@ -72,10 +71,8 @@ for THREADS in "${CONCURRENCY_LEVELS[@]}"; do
         LOG_FILE="$RUN_DIR/${RUN_NAME}.log"
 
         echo ""
-        echo "-------------------------------------------"
         echo "[$(date +%H:%M:%S)] Starting run: $RUN_NAME"
         echo "  Threads: $THREADS, Repetition: $REP/$REPETITIONS"
-        echo "-------------------------------------------"
 
         # Seed the database
         echo "  Seeding database..."
